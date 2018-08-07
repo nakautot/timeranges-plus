@@ -198,6 +198,18 @@ describe('START TEST - timeranges+', function() {
 				assert.equal(trpInstance.toString(), '[[0,10],[20,30],[40,50]]');
 			});
 		});
+		describe('timerange-plus().toDuration', function() {
+			before(function() {
+				trpInstance = new Trp();
+			});
+			it('should return number representing total durantion of all ranges', function() {
+				trpInstance.add(0, 10);
+				trpInstance.add(40, 50);
+				trpInstance.add(20, 30);
+
+				assert.equal(trpInstance.toDuration(), 30);
+			});
+		});
 	});
 	describe('instantiating', function() {
 		it('should throw an exception both parameters are not a numbers', function() {

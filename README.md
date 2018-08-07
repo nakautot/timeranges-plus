@@ -71,11 +71,19 @@ Combining other timeranges
 ```
 
 ### Display
+String
 ```javascript
     var Trp = require('timeranges-plus');
     var trpInstance = new Trp();
 
     trpInstance.toString();
+```
+Duration
+```javascript
+    var Trp = require('timeranges-plus');
+    var trpInstance = new Trp();
+
+    trpInstance.toDuration();
 ```
 
 ### Under the hood

@@ -1,4 +1,4 @@
-"use strict;"
+'use strict;';
 
 function compareTime(item1, item2) {
 	return item1[0] - item2[0];
@@ -58,6 +58,12 @@ function Trp(start, end) {
 
 	self.toString = function() {
 		return (ranges.length ? '[[{0}]]' : '[{0}]').replace('{0}', ranges.join('],['));
+	};
+
+	self.toDuration = function() {
+		return [].concat.apply([], ranges).reduce(function(prev, item, index) {
+			return prev + item * (index % 2 ? 1 : -1);
+		}, 0);
 	};
 }
 

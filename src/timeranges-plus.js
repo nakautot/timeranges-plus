@@ -8,6 +8,10 @@ function mergeRanges(prev, item, index) {
 	return prev.concat(!index ? [item] : Trp.mergeRange(prev.pop(), item));
 }
 
+function toRangeNum(rangeString, precision) {
+	return parseInt(rangeString, 36) / (precision || 1000);
+}
+
 function Trp(start, end) {
 	if (start !== undefined && end !== undefined) {
 		checkStartEnd(start, end);
@@ -65,7 +69,24 @@ function Trp(start, end) {
 			return prev + item * (index % 2 ? 1 : -1);
 		}, 0);
 	};
+
+	self.pack = function(precision) {
+		return [].concat.apply([], ranges).map(function (item) {
+			return Math.round(item * (precision || 1000)).toString(36);
+		}).join(':');
+	};
 }
+
+Trp.unpack = function(trpPackedString, precision) {
+	var wrapper = new Trp();
+	trpPackedString.split(':').reduce(function (prev, item) {
+		if(prev === null)
+			return item;
+		wrapper.add(toRangeNum(prev, precision), toRangeNum(item, precision));
+		return null;
+	}, null);
+	return wrapper;
+};
 
 Trp.mergeRange = function(range1, range2) {
 	if (range1[0] <= range2[0] && range2[0] <= range1[1]) {

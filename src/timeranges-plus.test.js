@@ -75,6 +75,18 @@ describe('START TEST - timeranges+', function() {
 				assert.equal(wrapper.toString(), '[[0,1],[3,5],[7,8]]');
 			});
 		});
+		describe('timerange-plus.unpack', function() {
+			it('should return comma separated hex strings representing ranges', function() {
+				var trpInstance = Trp.unpack('0:7ps:ffk:n5c:uv4:12kw');
+
+				assert.equal(trpInstance.start(0), 0);
+				assert.equal(trpInstance.end(0), 10);
+				assert.equal(trpInstance.start(1), 20);
+				assert.equal(trpInstance.end(1), 30);
+				assert.equal(trpInstance.start(2), 40);
+				assert.equal(trpInstance.end(2), 50);
+			});
+		});
 	});
 	describe('test member methods', function() {
 		var trpInstance;
@@ -210,6 +222,18 @@ describe('START TEST - timeranges+', function() {
 				assert.equal(trpInstance.toDuration(), 30);
 			});
 		});
+		describe('timerange-plus().pack', function() {
+			before(function() {
+				trpInstance = new Trp();
+			});
+			it('should return comma separated hex strings representing ranges', function() {
+				trpInstance.add(0, 10);
+				trpInstance.add(40, 50);
+				trpInstance.add(20, 30);
+
+				assert.equal(trpInstance.pack(), '0:7ps:ffk:n5c:uv4:12kw');
+			});
+		});
 	});
 	describe('instantiating', function() {
 		it('should throw an exception both parameters are not a numbers', function() {
@@ -225,6 +249,23 @@ describe('START TEST - timeranges+', function() {
 		it('should be able to instantiate with the initial range', function() {
 			var trpInstance = new Trp(0, 10);
 			assert.equal(trpInstance.toString(), '[[0,10]]');
+		});
+	});
+	describe('transporting', function() {
+		it('should be able to transport a timerange via packing and unpacking', function() {
+			var trpInstance1 = new Trp();
+			trpInstance1.add(0, 10);
+			trpInstance1.add(40, 50);
+			trpInstance1.add(20, 30);
+
+			var trpInstance2 = Trp.unpack(trpInstance1.pack());
+
+			assert.equal(trpInstance2.start(0), 0);
+			assert.equal(trpInstance2.end(0), 10);
+			assert.equal(trpInstance2.start(1), 20);
+			assert.equal(trpInstance2.end(1), 30);
+			assert.equal(trpInstance2.start(2), 40);
+			assert.equal(trpInstance2.end(2), 50);
 		});
 	});
 });

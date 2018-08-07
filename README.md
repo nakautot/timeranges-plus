@@ -9,7 +9,7 @@ timeranges-plus can be used in browsers or as a Node JS module.
 
 ### Browsers
 
-Simply include [timeranges-plus.min.js](https://github.com/nakautot/timeranges-plus/releases/download/1.0.0/timeranges-plus.min.js) on your page.
+Simply include [timeranges-plus.min.js](https://github.com/nakautot/timeranges-plus/releases/download/1.2.0/timeranges-plus.min.js) on your page.
 
 ### Node JS
 
@@ -109,6 +109,16 @@ Auto-overlap
     trpInstance1.merge(trpInstance2);
 
     trpInstance1.toString(); // yields: [[0,30],[40,50]]
+```
+
+### Transporting
+```javascript
+    var trpInstance1 = new Trp();
+    trpInstance1.add(0, 10);
+    trpInstance1.add(40, 50);
+    trpInstance1.add(20, 30);
+
+    var trpInstance2 = Trp.unpack(trpInstance1.pack());
 ```
 
 ## Development environment

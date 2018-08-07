@@ -12,6 +12,10 @@ function toRangeNum(rangeString, precision) {
 	return parseInt(rangeString, 36) / (precision || 1000);
 }
 
+function passThrough(value) {
+	return value;
+}
+
 function Trp(start, end) {
 	if (start !== undefined && end !== undefined) {
 		checkStartEnd(start, end);
@@ -70,16 +74,16 @@ function Trp(start, end) {
 		}, 0);
 	};
 
-	self.pack = function(precision) {
-		return [].concat.apply([], ranges).map(function (item) {
+	self.pack = function(precision, doAfterPack) {
+		return (doAfterPack || passThrough)([].concat.apply([], ranges).map(function (item) {
 			return Math.round(item * (precision || 1000)).toString(36);
-		}).join(':');
+		}).join(':'));
 	};
 }
 
-Trp.unpack = function(trpPackedString, precision) {
+Trp.unpack = function(trpPackedString, precision, doBeforeUnpack) {
 	var wrapper = new Trp();
-	trpPackedString.split(':').reduce(function (prev, item) {
+	(doBeforeUnpack || passThrough)(trpPackedString).split(':').reduce(function (prev, item) {
 		if(prev === null)
 			return item;
 		wrapper.add(toRangeNum(prev, precision), toRangeNum(item, precision));

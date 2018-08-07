@@ -1,0 +1,29 @@
+{
+  "name": "timeranges-plus",
+  "version": "1.0.0",
+  "description": "Emulated HTML5 Media TimeRanges interface with additional utilitites",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint ./src --fix",
+    "test": "nyc mocha ./src --timeout=3000",
+    "build": "uglifyjs ./src/timeranges-plus.js --compress --mangle --output ./dist/timeranges-plus.min.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nakautot/timeranges-plus.git"
+  },
+  "keywords": [],
+  "author": "Joseph Panuncillo <jpanuncillo@live.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nakautot/timeranges-plus/issues"
+  },
+  "files": ["dist/"],
+  "homepage": "https://github.com/nakautot/timeranges-plus#readme",
+  "devDependencies": {
+    "eslint": "^5.3.0",
+    "mocha": "^5.2.0",
+    "nyc": "^12.0.2",
+    "uglify-js": "^3.4.6"
+  }
+}

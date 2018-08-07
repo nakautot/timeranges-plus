@@ -1,6 +1,6 @@
 {
   "name": "timeranges-plus",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Emulated HTML5 Media TimeRanges interface with additional utilitites",
   "main": "index.js",
   "scripts": {
@@ -18,7 +18,9 @@
   "bugs": {
     "url": "https://github.com/nakautot/timeranges-plus/issues"
   },
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "homepage": "https://github.com/nakautot/timeranges-plus#readme",
   "devDependencies": {
     "eslint": "^5.3.0",

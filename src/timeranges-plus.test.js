@@ -194,6 +194,31 @@ describe('START TEST - timeranges+', function() {
 				trpInstance.merge(emulatedTimeRange);
 				assert.equal(trpInstance.toString(), '[[0,30],[40,50]]');
 			});
+			it('should be able to merge multiple timeranges to itself', function() {
+				var emulatedTimeRange1 = {};
+				var emulatedTimeRange2 = {};
+
+				emulatedTimeRange1.length = 1;
+				emulatedTimeRange1.data = [[5, 25]];
+				emulatedTimeRange2.length = 1;
+				emulatedTimeRange2.data = [[25, 45]];
+
+				emulatedTimeRange1.start = function(index) {
+					return emulatedTimeRange1.data[index][0];
+				};
+				emulatedTimeRange1.end = function(index) {
+					return emulatedTimeRange1.data[index][1];
+				};
+				emulatedTimeRange2.start = function(index) {
+					return emulatedTimeRange2.data[index][0];
+				};
+				emulatedTimeRange2.end = function(index) {
+					return emulatedTimeRange2.data[index][1];
+				};
+
+				trpInstance.merge([emulatedTimeRange1, emulatedTimeRange2]);
+				assert.equal(trpInstance.toString(), '[[0,50]]');
+			});
 		});
 		describe('timerange-plus().toString', function() {
 			before(function() {

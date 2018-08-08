@@ -58,10 +58,14 @@ function Trp(start, end) {
 		return ranges[index][1];
 	};
 
-	self.merge = function(timerange) {
+	function mergeIndiv(timerange) {
 		var combinedRanges = ranges.concat(Trp.toRangeArray(timerange));
 		ranges = Trp.cleanUpRange(combinedRanges);
 		self.length = ranges.length;
+	}
+
+	self.merge = function(timerangeArray) {
+		(Array.isArray(timerangeArray) ? timerangeArray : [timerangeArray]).forEach(mergeIndiv);
 	};
 
 	self.toString = function() {

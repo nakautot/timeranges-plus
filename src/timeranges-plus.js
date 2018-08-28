@@ -30,7 +30,7 @@ function Trp(start, end) {
 		if (start === undefined || end === undefined || Number.isNaN(start) || Number.isNaN(end)) {
 			throw Error('Input parameters should be numbers.');
 		}
-		if (end <= start) {
+		if (end < start) {
 			throw Error('Start should be less than end.');
 		}
 	}

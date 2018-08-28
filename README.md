@@ -9,7 +9,7 @@ timeranges-plus can be used in browsers or as a Node JS module.
 
 ### Browsers
 
-Simply include [timeranges-plus.min.js](https://github.com/nakautot/timeranges-plus/releases/download/1.3.1/timeranges-plus.min.js) on your page.
+Simply include [timeranges-plus.min.js](https://github.com/nakautot/timeranges-plus/releases/download/1.3.2/timeranges-plus.min.js) on your page.
 
 ### Node JS
 

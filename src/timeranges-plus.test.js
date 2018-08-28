@@ -104,7 +104,8 @@ describe('START TEST - timeranges+', function() {
 					trpInstance.add(10, 0);
 				});
 			});
-			it('should throw an exception when second parameter is equal to first', function() {
+			// This is now allowed, see #1
+			it.skip('should throw an exception when second parameter is equal to first', function() {
 				assert.throws(function() {
 					trpInstance.add(10, 10);
 				});

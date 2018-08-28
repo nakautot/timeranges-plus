@@ -1,6 +1,6 @@
 {
   "name": "timeranges-plus",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "description": "Emulated HTML5 Media TimeRanges interface with additional utilitites",
   "main": "./dist/timeranges-plus.min.js",
   "scripts": {
